@@ -1,13 +1,215 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #f3f3f4;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.Container {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.LeftMenu,
+.PageContainer {
+  transition-property: width;
+  transition-duration: 0.4s;
+}
+
+.Container--collapsed > .LeftMenu {
+  width: 70px;
+}
+
+.Container--collapsed > .PageContainer {
+  width: calc(100% - 70px);
+}
+
+:not(.Container--collapsed) > .LeftMenu {
+  animation: fadeInFromNone 0.8s ease;
+}
+
+.LeftMenu {
+  width: 220px;
+  background-color: rgb(173, 216, 230);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.PageContainer {
+  width: calc(100% - 220px);
+  min-height: 100vh;
+  background-color: chocolate;
+  display: flex;
+  flex-direction: column;
+}
+.TopSearch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7em;
+  min-height: 60px;
+  background-color: greenyellow;
+}
+.PageContainer-content {
+  background-color: khaki;
+  flex-grow: 1;
+}
+.Footer {
+  background-color: black;
+  text-align: center;
+  color: white;
+  font-size: large;
+  line-height: 4em;
+}
+
+.TopSearch-icon {
+  color: black;
+  background-color: rgb(173, 255, 47);
+  padding: 0.7em;
+  border: none;
+  border-radius: 4px;
+}
+
+.TopSearch-icon > i.icon {
+  margin: 0 !important;
+}
+
+.TopSearch-icon:hover,
+.TopSearch-icon:focus {
+  background-color: rgb(161, 243, 38);
+  border: none;
+  outline: none;
+}
+
+.CvIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(160, 240, 40);
+  width: 100%;
+  height: 100px;
+  transition-property: height;
+  transition-duration: 0.4s;
+}
+
+.Container--collapsed .CvIcon {
+  height: 60px;
+}
+
+.CvIcon-img {
+  max-width: 60px;
+  max-height: 60px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.Container--collapsed .CvIcon-title {
+  display: none;
+}
+
+.CvIcon-title {
+  display: flex;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  20% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+ul.MenuItems {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul.MenuItems > li.MenuItem {
+  position: relative;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+ul.MenuItems > li.MenuItem > a {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  padding: 15px 25px 15px 20px;
+  font-weight: 500;
+}
+
+/* rgb(173, 216, 230) */
+li.MenuItem--active {
+  border-left: 4px solid greenyellow;
+  background-color: rgb(146, 194, 211);
+}
+
+li.MenuItem .MenuItem-icon {
+  margin-right: 10px;
+  font-size: 18px;
+  transition: all 0.4s;
+}
+
+li.MenuItem .MenuItem-title {
+  font-size: 18px;
+}
+
+li.MenuItem .MenuItem-arrow {
+  float: right;
+  font-size: 10px;
+}
+
+.Container--collapsed li.MenuItem .MenuItem-arrow {
+  display: none;
+}
+
+.Container--collapsed .MenuItem-title {
+  display: none;
+}
+
+.Container--collapsed li.MenuItem .MenuItem-icon {
+  font-size: 25px;
+}
+
+.Container--collapsed ul.SubMenuItem {
+  display: none;
+}
+
+.SubMenuItem {
+  list-style: none;
+  background-color: inherit;
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.SubMenuItem > li > a {
+  display: inline-block;
+  padding: 8px 25px 8px 20px;
+}
+
+.Container--collapsed li.MenuItem--active:hover > .SubMenuItem {
+  display: block;
+  min-width: 200px;
+  position: absolute;
+  top: 0;
+  left: 66px;
+  padding-left: 0;
 }
