@@ -187,20 +187,20 @@ li.MenuItem .MenuItem-arrow {
   font-size: 25px;
 }
 
-.Container--collapsed ul.SubMenuItem {
+.SubMenuItem {
+  background-color: inherit;
+}
+
+.Container--collapsed .SubMenuItem {
   display: none;
 }
 
-.SubMenuItem {
+.SubMenuItem ul {
   list-style: none;
-  background-color: inherit;
   padding: 0 18px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
 }
 
-.SubMenuItem > li > a {
+.SubMenuItem li a {
   display: inline-block;
   padding: 8px 25px 8px 20px;
 }
@@ -211,5 +211,4 @@ li.MenuItem .MenuItem-arrow {
   position: absolute;
   top: 0;
   left: 66px;
-  padding-left: 0;
 }
